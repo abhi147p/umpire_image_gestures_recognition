@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Prediction Results</title>
+    <style>
+        html, body {
+            height: 100%; /* Ensures the minimum height for html and body is 100% of the viewport */
+            margin: 0;
+            padding: 0;
+            display: flex; /* Sets the display property to flex for body */
+            flex-direction: column; /* Arranges flex items in a column */
+            min-height: 100vh; /* Ensures the minimum height of body is the full viewport height */
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            width: 100%;
+        }
+        main {
+            flex: 1; /* Flex-grow to use available space */
+            margin: 20px;
+            margin-top: 50px; /* Adjust this value to account for the fixed header */
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            width: 100%;
+        }
+        img {
+            max-width: 20%;
+            height: auto;
+            display: block;
+            margin: 0 auto 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Image Classifier Results</h1>
+    </header>
+    <main>
+        <h2>Uploaded Image and Predictions</h2>
+        <img src="{{ image_instance.picture.url }}" alt="Uploaded Image">
+        <ul>
+            {% for model, prediction in predictions.items %}
+                <li><strong>{{ model }}:</strong> {{ prediction }}</li>
+            {% endfor %}
+        </ul>
+    </main>
+    <footer>
+        <p>© 2024 Image Classifier App. All rights reserved.</p>
+    </footer>
+</body>
+</html>

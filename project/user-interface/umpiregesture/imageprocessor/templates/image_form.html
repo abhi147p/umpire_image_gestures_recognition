@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Prediction</title>
+    <style>
+        html {
+            height: 100%; /* Make sure html is 100% the height of the viewport */
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex; /* Use flexbox to layout body contents */
+            flex-direction: column; /* Stack children vertically */
+            min-height: 100vh; /* Minimum height is full viewport height */
+            margin: 0; /* Remove default body margin */
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        main {
+            flex: 1; /* Flex-grow to use available space */
+            margin: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        form {
+            margin: 0 auto;
+            width: 300px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        button {
+            background: #5C67F2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin-top: 20px;
+            width: 100%;
+        }
+        button:hover {
+            background: #5058D4;
+        }
+        h1, h2 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Image Classifier</h1>
+    </header>
+    <main>
+        <h2>Upload an Image</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+        {% if predictions %}
+            <h2>Predictions:</h2>
+            <ul>
+                {% for model, prediction in predictions.items %}
+                    <li><strong>{{ model }}:</strong> {{ prediction }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </main>
+    <footer>
+        <p>© 2024 Image Classifier App. All rights reserved.</p>
+    </footer>
+</body>
+</html>
